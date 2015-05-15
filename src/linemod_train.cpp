@@ -165,6 +165,19 @@ namespace ecto_linemod
     *renderer_focal_length_x_ = *param_focal_length_x_;
     *renderer_focal_length_y_ = *param_focal_length_y_;
 
+    std::cout << "renderer_focal_length_x_ = " << *renderer_focal_length_x_ << std::endl;
+    std::cout << "renderer_focal_length_y_ = " << *renderer_focal_length_y_ << std::endl;
+    std::cout << "renderer_width_ = " << *renderer_width_ << std::endl;
+    std::cout << "renderer_height = " << *renderer_height_ << std::endl;
+
+    // Change based on what is here:
+    // https://threeconstants.wordpress.com/2014/11/09/kinect-v2-depth-camera-calibration/
+    *renderer_focal_length_x_ = 390;
+    *renderer_focal_length_y_ = 463;
+    
+    std::cout << "new renderer_focal_length_x_ = " << *renderer_focal_length_x_ << std::endl;
+    std::cout << "new renderer_focal_length_y_ = " << *renderer_focal_length_y_ << std::endl;
+
     // the model name can be specified on the command line.
     Renderer3d renderer = Renderer3d(mesh_path);
     renderer.set_parameters(*renderer_width_, *renderer_height_, *renderer_focal_length_x_,
