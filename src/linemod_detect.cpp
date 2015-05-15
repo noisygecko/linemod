@@ -285,20 +285,17 @@ struct Detector: public object_recognition_core::db::bases::ModelReaderBase {
       if (depth_->depth() == CV_32F)
         depth_->convertTo(depth, CV_16UC1, 1000.0);
 
-      cv::Mat *depth2 = new cv::Mat(640, 480, CV_16UC1);
-      cv::resize(*depth_, *depth2, depth2->size());
-
       if (*use_depth_)
       {
         if (!(*use_rgb_))
         {
           //add a depth-based gray image to the list of sources for matching
-          depth2->convertTo(display, CV_8U, 255.0/1800.0);
+          depth.convertTo(display, CV_8U, 255.0/1800.0);
           cv::cvtColor(display, display, cv::COLOR_GRAY2BGR);
           sources.push_back(display);
         }
 
-        sources.push_back(*depth2);
+        sources.push_back(depth);
       }
 
       std::vector<cv::linemod::Match> matches;
